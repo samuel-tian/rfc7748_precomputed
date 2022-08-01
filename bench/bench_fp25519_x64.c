@@ -32,6 +32,7 @@
  */
 
 #include <fp25519_x64.h>
+#include <solinas25519.h>
 #include <stdio.h>
 #include "clocks.h"
 #include "random.h"
@@ -52,6 +53,10 @@ void bench_fp25519_x64(void) {
   random_EltFp25519_1w_x64(b);
   random_EltFp25519_1w_x64(c);
 
+  printf("benchmarking fiat");
+  CLOCKS("mul", mul_EltFp25519_1w_x64(c, c, b));
+  CLOCKS("fiat mul", fiat_p25519_mul(c, a, b));
+  
   printf("=== GF(2^255-19) ===\n");
   printf("== 1-way x64 \n");
   CLOCKS("add", add_EltFp25519_1w_x64(c, a, b));

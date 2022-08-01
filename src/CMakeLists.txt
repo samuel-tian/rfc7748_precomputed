@@ -12,7 +12,8 @@ set(c_files
 	fp25519_x64.c
 	x25519_x64.c
 	fp448_x64.c
-	x448_x64.c)
+	x448_x64.c
+	solinas25519.c)
 
 add_library(${TARGET} STATIC ${c_files})
 add_library(${TARGET}-shared SHARED ${c_files})
